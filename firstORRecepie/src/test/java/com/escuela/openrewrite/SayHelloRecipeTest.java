@@ -29,7 +29,7 @@ public class SayHelloRecipeTest implements RewriteTest {
 
                             class FooBar {
                                 public String hello() {
-                                    return "Hello from com.yourorg.FooBar!";
+                                    return "Hello from com.escuela.openrewrite.FooBar!";
                                 }
                             }
                         """
