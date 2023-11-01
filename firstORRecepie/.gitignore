@@ -1,5 +1,11 @@
+target/
+build/
+.gradle/
 .idea/
+.boot-releases
+out/
 .classpath
 .project
 .settings/
-target/
+.DS_Store
+bin/
