@@ -44,29 +44,30 @@ public class SayGoodMorningRecipe extends Recipe {
                         .build();
 
         @Override
-        public J.ClassDeclaration visitClassDeclaration(J.ClassDeclaration classDecl, ExecutionContext executionContext) {
+        public J.ClassDeclaration visitClassDeclaration(J.ClassDeclaration classDeclaration, ExecutionContext executionContext) {
+
             // Don't make changes to classes that don't match the fully qualified name
-            if (classDecl.getType() == null || !classDecl.getType().getFullyQualifiedName().equals(fullyQualifiedClassName)) {
-                return classDecl;
+            if (classDeclaration.getType() == null || !classDeclaration.getType().getFullyQualifiedName().equals(fullyQualifiedClassName)) {
+                return classDeclaration;
             }
 
             // Check if the class already has a method named "hello".
-            boolean helloMethodExists = classDecl.getBody().getStatements().stream()
+            boolean helloMethodExists = classDeclaration.getBody().getStatements().stream()
                     .filter(statement -> statement instanceof J.MethodDeclaration)
                     .map(J.MethodDeclaration.class::cast)
                     .anyMatch(methodDeclaration -> methodDeclaration.getName().getSimpleName().equals("goodMorning"));
 
             // If the class already has a `hello()` method, don't make any changes to it.
             if (helloMethodExists) {
-                return classDecl;
+                return classDeclaration;
             }
 
             // Interpolate the fullyQualifiedClassName into the template and use the resulting LST to update the class body
-            classDecl = classDecl.withBody( helloTemplate.apply(new Cursor(getCursor(), classDecl.getBody()),
-                    classDecl.getBody().getCoordinates().lastStatement(),
+            classDeclaration = classDeclaration.withBody( helloTemplate.apply(new Cursor(getCursor(), classDeclaration.getBody()),
+                    classDeclaration.getBody().getCoordinates().lastStatement(),
                     fullyQualifiedClassName ));
 
-            return classDecl;
+            return classDeclaration;
         }
 
     }
