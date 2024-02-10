@@ -3,7 +3,6 @@
 #recipeList:
 #  - com.escuela.openrewrite.SayHelloRecipe:
 #      fullyQualifiedClassName: com.escuela.openrewrite.FooBar
-
 type: specs.openrewrite.org/v1beta/recipe
 name: com.escuela.openrewrite.SayHelloFooBar
 recipeList:
@@ -13,9 +12,6 @@ recipeList:
         fullyQualifiedClassName: com.escuela.openrewrite.FooBar
   - com.escuela.openrewrite.ExpandCustomerInfo:
         fullyQualifiedClassName: com.escuela.openrewrite.Customer
-  - org.openrewrite.java.dependencies.DependencyVulnerabilityCheck:
-      scope: compile
-      overrideManagedVersion: false
 
 
 
