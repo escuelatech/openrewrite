@@ -2,24 +2,24 @@ type: specs.openrewrite.org/v1beta/recipe
 name: org.escuela.tech.DependencyVulnerabilityCheckExample
 displayName: Find and fix vulnerable dependencies example
 recipeList:
-#  - org.openrewrite.java.dependencies.DependencyVulnerabilityCheck:
-##      scope: compile
-##      overrideManagedVersion: false
-#      scope: runtime
-#      overrideManagedVersion: true
-#      includeTransitive: false
-#      addMarkers: true
-#  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
-#      groupId: com.squareup.okhttp3
-#      artifactId: okhttp*
-#      newVersion: 4.12.0
-#      versionPattern: '-jre'
-##     retainVersions: com.jcraft:jsch
-#  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
-#      groupId: log4j*
-#      artifactId: log4j*
-#      newVersion: 1.2.17
-#      versionPattern: '-jre'
+  - org.openrewrite.java.dependencies.DependencyVulnerabilityCheck:
+#      scope: compile
+#      overrideManagedVersion: false
+      scope: runtime
+      overrideManagedVersion: true
+      includeTransitive: false
+      addMarkers: true
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: com.squareup.okhttp3
+      artifactId: okhttp*
+      newVersion: 4.12.0
+      versionPattern: '-jre'
+#     retainVersions: com.jcraft:jsch
+  - org.openrewrite.java.dependencies.UpgradeDependencyVersion:
+      groupId: log4j*
+      artifactId: log4j*
+      newVersion: 1.2.17
+      versionPattern: '-jre'
   - org.openrewrite.java.dependencies.DependencyList:
       scope: Runtime
       includeTransitive: true
